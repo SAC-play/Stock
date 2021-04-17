@@ -132,13 +132,6 @@ def cancel_order(uuids):
 
 def order_bitcoin(bitcoin):
     query = bitcoin
-    query = {
-        'market': 'KRW-BTC',
-        'side': 'bid',
-        'volume': '0.01',
-        'price': '100.0',
-        'ord_type': 'limit',
-    }
     query_string = urlencode(query).encode()
 
     m = hashlib.sha512()
