@@ -5,8 +5,8 @@ from urllib.parse import urlencode
 import json
 import requests
 
-access_key = "fdmjDOKz3gze0ZCPHmkbynR0FC1STwKQiuKvTy9o"
-secret_key = "0BfVgaJUGsXqEyByGowjxq4kboECKKO1Fp4UVumS"
+access_key = "4IRo5Bzmab715nErzjruH8rDqJIeUtGsg4WgWJxe"
+secret_key = "BmP2xBSSxZySchtxxUQpRxZ8xxQOIRJDw2FvrHf3"
 server_url = "https://api.upbit.com"
 
 def get_my_account_info():
@@ -20,7 +20,7 @@ def get_my_account_info():
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/accounts", headers=headers)
-    with open('Upbit/output/account_info.json', 'w') as f:
+    with open('Upbit/output/account_info.json', 'w') as f: 
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -150,3 +150,29 @@ def order_bitcoin(bitcoin):
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/orders", params=query, headers=headers)
+
+
+def get_info_withdraw(uid):
+    query = uid
+    query_string = urlencode(query).encode()
+
+    m = hashlib.sha512()
+    m.update(query_string)
+    query_hash = m.hexdigest()
+
+    payload = {
+    'access_key': access_key,
+    'nonce': str(uuid.uuid4()),
+    'query_hash': query_hash,
+    'query_hash_alg': 'SHA512',
+    }
+
+    jwt_token = jwt.encode(payload, secret_key)
+    authorize_token = 'Bearer {}'.format(jwt_token)
+    headers = {"Authorization": authorize_token}
+
+    res = requests.get(server_url + "/v1/withdraw", params=query, headers=headers)
+    with open('Upbit/output/get_info_withdraw.json', 'w') as f:
+        json.dump(res.json(), f,indent=4)
+
+    print(res.json())
