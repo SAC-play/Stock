@@ -2,12 +2,11 @@ import sys
 sys.path.append('./Upbit')
 
 import UpbitApi as Upbit
-
-
 from UpbitApi import get_info_withdraw
 
+#currency = 'KRW'
 #test account info
-Upbit.get_my_account_info()
+#Upbit.get_my_account_info()
 
 #test market info
 #Upbit.get_order_chance({'market':'KRW-ETH',})
@@ -36,3 +35,13 @@ Upbit.get_my_account_info()
 #     'uuid': '9f432943-54e0-40b7-825f-b6fec8b42b79'
 # }
 # get_info_withdraw(uid)
+
+#test withdraw_list
+#withdrawState = {
+#    'currency': currency,
+#    'state': 'done',
+#}
+#Upbit.get_info_withdraw_list(withdrawState)
+
+#test withdraw_potential
+#Upbit.get_withdraw_potential()
