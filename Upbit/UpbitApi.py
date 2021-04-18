@@ -5,8 +5,8 @@ from urllib.parse import urlencode
 import json
 import requests
 
-access_key = "4IRo5Bzmab715nErzjruH8rDqJIeUtGsg4WgWJxe"
-secret_key = "BmP2xBSSxZySchtxxUQpRxZ8xxQOIRJDw2FvrHf3"
+access_key = ""
+secret_key = ""
 server_url = "https://api.upbit.com"
 
 def get_my_account_info():
