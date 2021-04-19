@@ -5,8 +5,11 @@ from urllib.parse import urlencode
 import json
 import requests
 
-access_key = ""
-secret_key = ""
+file = open('api_key.json')
+jsonString = json.load(file)
+
+access_key = jsonString.get('access_key')
+secret_key = jsonString.get('security_key')
 server_url = "https://api.upbit.com"
 
 def get_my_account_info():
