@@ -8,7 +8,7 @@ currency = 'KRW'
 Upbit.get_my_account_info()
 
 #test market info
-Upbit.get_order_chance({'market':'KRW-ETH',})
+Upbit.get_order_chance({'market':'KRW-ARDR',})
 
 #test ordered info
 Upbit.get_ordered_info({'uuid': '9ca023a5-851b-4fec-9f0a-48cd83c2eaae',})

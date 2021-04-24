@@ -5,14 +5,14 @@ from urllib.parse import urlencode
 import json
 import requests
 
-file = open('api_key.json')
+file = open('Upbit/api_key.json','r')
 jsonString = json.load(file)
 
 access_key = jsonString.get('access_key')
 secret_key = jsonString.get('security_key')
 server_url = "https://api.upbit.com"
 
-def get_my_account_info():
+def get_my_account_info():    #계정정보를 불러 오는 것.
     payload = {
         'access_key': access_key,
         'nonce': str(uuid.uuid4()),
@@ -23,12 +23,13 @@ def get_my_account_info():
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/accounts", headers=headers)
-    with open('Upbit/output/account_info.json', 'w') as f: 
+    with open('Upbit/output/account_info.json', 'w') as f:  #제이슨을 파일로 저장한다
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
 
 def get_order_chance(list_market):
+    print("Hello   ",list_market['market'])    #딕셔너리, 자료를 찾기위해서, 단어에 대한 세부적 사항이 나온다.
     query = list_market
     query_string = urlencode(query).encode()
 
@@ -48,10 +49,10 @@ def get_order_chance(list_market):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/orders/chance", params=query, headers=headers)
-    with open('Upbit/output/market_info.json', 'w') as f:
+    with open('Upbit/output/'+list_market['market']+'_info.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
     print(res.json())
-
+#문자열 나누기 
 def get_ordered_info(id):
     query = id
     query_string = urlencode(query).encode()
