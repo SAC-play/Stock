@@ -154,6 +154,10 @@ def order_bitcoin(bitcoin):
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/orders", params=query, headers=headers)
+    with open('Upbit/output/order_coin.json', 'w') as f:
+            json.dump(res.json(), f,indent=4)
+
+    print(res.json())
 
 def get_info_withdraw(uid):
     query = uid
