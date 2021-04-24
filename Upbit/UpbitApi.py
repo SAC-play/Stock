@@ -77,6 +77,7 @@ def get_ordered_info(id):
         json.dump(res.json(), f,indent=4)
     print(res.json())
 
+#this must be improved
 def get_order_list(ids):
     query = {
         'state': 'done',
