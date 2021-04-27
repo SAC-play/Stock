@@ -25,8 +25,8 @@ def get_my_account_info():    #계정정보를 불러 오는 것.
     res = requests.get(server_url + "/v1/accounts", headers=headers)
     with open('Upbit/output/account_info.json', 'w') as f:  #제이슨을 파일로 저장한다
         json.dump(res.json(), f,indent=4)
-
     print(res.json())
+    return res.json()
 
 def get_order_chance(list_market):
      #딕셔너리, 자료를 찾기위해서, 단어에 대한 세부적 사항이 나온다. list_market['market']
