@@ -7,6 +7,7 @@ import requests
 
 import os
 api_key_json=os.path.dirname(__file__)+'/api_key.json'
+output_dir=os.path.dirname(__file__)+'/../output/'
 
 file = open(api_key_json,'r')
 jsonString = json.load(file)
@@ -26,7 +27,7 @@ def get_my_account_info():    #계정정보를 불러 오는 것.
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/accounts", headers=headers)
-    with open('Upbit/output/account_info.json', 'w') as f:  #제이슨을 파일로 저장한다
+    with open(output_dir+'account_info.json', 'w') as f:  #제이슨을 파일로 저장한다
         json.dump(res.json(), f,indent=4)
     print(res.json())
     return res.json()
@@ -52,7 +53,7 @@ def get_order_chance(list_market):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/orders/chance", params=query, headers=headers)
-    with open('Upbit/output/'+list_market['market']+'_info.json', 'w') as f:
+    with open(output_dir+''+list_market['market']+'_info.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
     print(res.json())
 
@@ -76,7 +77,7 @@ def get_ordered_info(id):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/order", params=query, headers=headers)
-    with open('Upbit/output/ordered_info.json', 'w') as f:
+    with open(output_dir+'ordered_info.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
     print(res.json())
 
@@ -109,7 +110,7 @@ def get_order_list(ids):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/orders", params=query, headers=headers)
-    with open('Upbit/output/order_list.json', 'w') as f:
+    with open(output_dir+'order_list.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
     print(res.json())
 
@@ -133,7 +134,7 @@ def cancel_order(uuids):
     headers = {"Authorization": authorize_token}
 
     res = requests.delete(server_url + "/v1/order", params=query, headers=headers)
-    with open('Upbit/output/cancel_order.json', 'w') as f:
+    with open(output_dir+'cancel_order.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -158,7 +159,7 @@ def order_bitcoin(bitcoin):
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/orders", params=query, headers=headers)
-    with open('Upbit/output/order_coin.json', 'w') as f:
+    with open(output_dir+'order_coin.json', 'w') as f:
             json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -183,7 +184,7 @@ def get_info_withdraw(uid):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/withdraw", params=query, headers=headers)
-    with open('Upbit/output/get_info_withdraw.json', 'w') as f:
+    with open(output_dir+'get_info_withdraw.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -218,7 +219,7 @@ def get_info_withdraw_list(withdrawState):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/withdraws", params=query, headers=headers)
-    with open('Upbit/output/withdraw_list.json', 'w') as f:
+    with open(output_dir+'withdraw_list.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -245,7 +246,7 @@ def get_withdraw_potential():
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/withdraw", params=query, headers=headers)
-    with open('Upbit/output/get_info_withdraw.json', 'w') as f:
+    with open(output_dir+'get_info_withdraw.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -270,7 +271,7 @@ def withdraw_coin(coin) :
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/withdraws/coin", params=query, headers=headers)
-    with open('Upbit/output/get_withdraw_coin.json', 'w') as f:
+    with open(output_dir+'get_withdraw_coin.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -295,7 +296,7 @@ def withdraw_krw(krw):
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/withdraws/krw", params=query, headers=headers)
-    with open('Upbit/output/withdraw_krw.json', 'w') as f:
+    with open(output_dir+'withdraw_krw.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -329,7 +330,7 @@ def get_deposit_list(unit):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/deposits", params=query, headers=headers)
-    with open('Upbit/output/deposit_list.json', 'w') as f:
+    with open(output_dir+'deposit_list.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -354,7 +355,7 @@ def get_deposit_info(uid):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/deposit", params=query, headers=headers)
-    with open('Upbit/output/deposit_info.json', 'w') as f:
+    with open(output_dir+'deposit_info.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -379,7 +380,7 @@ def generate_coin_address(coin_unit):
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/deposits/generate_coin_address", params=query, headers=headers)
-    with open('Upbit/output/generate_coin_address.json', 'w') as f:
+    with open(output_dir+'generate_coin_address.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -395,7 +396,7 @@ def get_coin_address_list():
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/deposits/coin_addresses", headers=headers)
-    with open('Upbit/output/get_coin_address_list.json', 'w') as f:
+    with open(output_dir+'get_coin_address_list.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -420,7 +421,7 @@ def get_coin_address(coin):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/deposits/coin_address", params=query, headers=headers)
-    with open('Upbit/output/get_coin_address.json', 'w') as f:
+    with open(output_dir+'get_coin_address.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -445,7 +446,7 @@ def deposit_krw(krw_amount):
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/deposits/krw", params=query, headers=headers)
-    with open('Upbit/output/deposit_krw.json', 'w') as f:
+    with open(output_dir+'deposit_krw.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -461,7 +462,7 @@ def get_status_wallet():
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/status/wallet", headers=headers)
-    with open('Upbit/output/wallet_status.json', 'w') as f:
+    with open(output_dir+'wallet_status.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -477,7 +478,7 @@ def get_api_key_list():
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/api_keys", headers=headers)
-    with open('Upbit/output/api_key_list.json', 'w') as f:
+    with open(output_dir+'api_key_list.json', 'w') as f:
         json.dump(res.json(), f,indent=4)
 
     print(res.json())
@@ -486,7 +487,7 @@ def get_market_info():
     url = server_url + "/v1/market/all"
     querystring = {"isDetails":"false"}
     response = requests.request("GET", url, params=querystring)
-    with open('Upbit/output/market_info.json', 'w') as f:
+    with open(output_dir+'market_info.json', 'w') as f:
         json.dump(response.json(), f,indent=4)
 
     print(response.text)
@@ -499,7 +500,7 @@ def get_candle_info(market_unit,time_unit):
 
     response = requests.request("GET", url, params=querystring)
     time_unit_str = time_unit.replace('/','_')
-    file_name = 'Upbit/output/candle_info('+ time_unit_str+ ').json'
+    file_name = output_dir+'candle_info('+ time_unit_str+ ').json'
     with open(file_name, 'w') as f:
         json.dump(response.json(), f,indent=4)
 
@@ -509,7 +510,7 @@ def get_trade_info_tick(market_unit):
     url =  server_url +"/v1/trades/ticks"
     querystring = {"market":"KRW-BTC","count":"1"}
     response = requests.request("GET", url, params=querystring)
-    with open('Upbit/output/trade_info_tick.json', 'w') as f:
+    with open(output_dir+'trade_info_tick.json', 'w') as f:
         json.dump(response.json(), f,indent=4)
 
     print(response.text)
@@ -519,7 +520,7 @@ def get_market_info_ticker(markets):
     querystring={"markets":[]}
     querystring["markets"]=markets
     response = requests.request("GET", url,params=querystring)
-    with open('Upbit/output/market_info_ticker.json', 'w') as f:
+    with open(output_dir+'market_info_ticker.json', 'w') as f:
         json.dump(response.json(), f,indent=4)
 
     print(response.text)
@@ -529,7 +530,7 @@ def get_orderbook(markets):
     querystring={"markets":[]}
     querystring["markets"]=markets
     response = requests.request("GET", url,params=querystring)
-    with open('Upbit/output/orderbook.json', 'w') as f:
+    with open(output_dir+'orderbook.json', 'w') as f:
         json.dump(response.json(), f,indent=4)
 
     print(response.text)
