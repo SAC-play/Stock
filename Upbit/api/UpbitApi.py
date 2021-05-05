@@ -5,7 +5,10 @@ from urllib.parse import urlencode
 import json
 import requests
 
-file = open('Upbit/api_key.json','r')
+import os
+api_key_json=os.path.dirname(__file__)+'/api_key.json'
+
+file = open(api_key_json,'r')
 jsonString = json.load(file)
 
 access_key = jsonString.get('access_key')
