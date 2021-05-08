@@ -1,6 +1,6 @@
 import sys
 import os
-api_dirName=os.path.dirname(__file__)+'/../api'
+api_dirName=os.path.dirname(os.path.realpath(__file__))+'/../api'
 sys.path.append(api_dirName)
 
 import UpbitApi as Upbit
