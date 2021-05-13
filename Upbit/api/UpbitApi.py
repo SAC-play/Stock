@@ -4,7 +4,7 @@ import hashlib
 from urllib.parse import urlencode
 import json
 import requests
-
+from ast import literal_eval
 import os
 api_key_json=os.path.dirname(__file__)+'/api_key.json'
 output_dir=os.path.dirname(__file__)+'/../output/'
@@ -25,12 +25,13 @@ def get_my_account_info():    #계정정보를 불러 오는 것.
     jwt_token = jwt.encode(payload, secret_key)
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
-
-    res = requests.get(server_url + "/v1/accounts", headers=headers)
-    with open(output_dir+'account_info.json', 'w') as f:  #제이슨을 파일로 저장한다
-        json.dump(res.json(), f,indent=4)
-    print(res.json())
-    return res.json()
+    res = requests.get(server_url + "/v1/accounts", headers=headers).json()
+   
+    with open(os.path.dirname(os.path.realpath(__file__))+'/../output/account_info.json', 'w') as f:  #제이슨을 파일로 저장한다
+        json.dump(res, f, indent=4)
+        f.close    
+        
+    return res
 
 def get_order_chance(list_market):
      #딕셔너리, 자료를 찾기위해서, 단어에 대한 세부적 사항이 나온다. list_market['market']
@@ -523,7 +524,8 @@ def get_market_info_ticker(markets):
     with open(output_dir+'market_info_ticker.json', 'w') as f:
         json.dump(response.json(), f,indent=4)
 
-    print(response.text)
+    # print(response.json())
+    return response.json()
 
 def get_orderbook(markets):
     url = server_url + "/v1/orderbook"
