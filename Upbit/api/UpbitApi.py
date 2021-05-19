@@ -26,11 +26,7 @@ def get_my_account_info():    #계정정보를 불러 오는 것.
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
     res = requests.get(server_url + "/v1/accounts", headers=headers).json()
-   
-    with open(os.path.dirname(os.path.realpath(__file__))+'/../output/account_info.json', 'w') as f:  #제이슨을 파일로 저장한다
-        json.dump(res, f, indent=4)
-        f.close    
-        
+
     return res
 
 def get_order_chance(list_market):
@@ -54,9 +50,8 @@ def get_order_chance(list_market):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/orders/chance", params=query, headers=headers)
-    with open(output_dir+''+list_market['market']+'_info.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-    print(res.json())
+
+    return res
 
 def get_ordered_info(id):
     query = id
@@ -78,9 +73,7 @@ def get_ordered_info(id):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/order", params=query, headers=headers)
-    with open(output_dir+'ordered_info.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-    print(res.json())
+    return res
 
 #this must be improved
 def get_order_list(ids):
@@ -111,9 +104,7 @@ def get_order_list(ids):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/orders", params=query, headers=headers)
-    with open(output_dir+'order_list.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-    print(res.json())
+    return res
 
 def cancel_order(uuids):
     query = uuids
@@ -135,10 +126,7 @@ def cancel_order(uuids):
     headers = {"Authorization": authorize_token}
 
     res = requests.delete(server_url + "/v1/order", params=query, headers=headers)
-    with open(output_dir+'cancel_order.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def order_bitcoin(bitcoin):
     query = bitcoin
@@ -160,10 +148,7 @@ def order_bitcoin(bitcoin):
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/orders", params=query, headers=headers)
-    with open(output_dir+'order_coin.json', 'w') as f:
-            json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def get_info_withdraw(uid):
     query = uid
@@ -185,10 +170,7 @@ def get_info_withdraw(uid):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/withdraw", params=query, headers=headers)
-    with open(output_dir+'get_info_withdraw.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
     
 def get_info_withdraw_list(withdrawState):
    
@@ -220,10 +202,7 @@ def get_info_withdraw_list(withdrawState):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/withdraws", params=query, headers=headers)
-    with open(output_dir+'withdraw_list.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def get_withdraw_potential():
     query = {
@@ -247,10 +226,7 @@ def get_withdraw_potential():
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/withdraw", params=query, headers=headers)
-    with open(output_dir+'get_info_withdraw.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def withdraw_coin(coin) :
     query = coin
@@ -272,10 +248,7 @@ def withdraw_coin(coin) :
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/withdraws/coin", params=query, headers=headers)
-    with open(output_dir+'get_withdraw_coin.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def withdraw_krw(krw):
     query = krw
@@ -297,10 +270,7 @@ def withdraw_krw(krw):
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/withdraws/krw", params=query, headers=headers)
-    with open(output_dir+'withdraw_krw.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def get_deposit_list(unit):
     query = unit
@@ -331,10 +301,7 @@ def get_deposit_list(unit):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/deposits", params=query, headers=headers)
-    with open(output_dir+'deposit_list.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def get_deposit_info(uid):
     query = uid
@@ -356,10 +323,7 @@ def get_deposit_info(uid):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/deposit", params=query, headers=headers)
-    with open(output_dir+'deposit_info.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def generate_coin_address(coin_unit):
     query = coin_unit
@@ -381,10 +345,7 @@ def generate_coin_address(coin_unit):
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/deposits/generate_coin_address", params=query, headers=headers)
-    with open(output_dir+'generate_coin_address.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def get_coin_address_list():
     payload = {
@@ -397,10 +358,7 @@ def get_coin_address_list():
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/deposits/coin_addresses", headers=headers)
-    with open(output_dir+'get_coin_address_list.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def get_coin_address(coin):
     query = coin
@@ -422,10 +380,7 @@ def get_coin_address(coin):
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/deposits/coin_address", params=query, headers=headers)
-    with open(output_dir+'get_coin_address.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def deposit_krw(krw_amount):
     query = krw_amount
@@ -447,10 +402,7 @@ def deposit_krw(krw_amount):
     headers = {"Authorization": authorize_token}
 
     res = requests.post(server_url + "/v1/deposits/krw", params=query, headers=headers)
-    with open(output_dir+'deposit_krw.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def get_status_wallet():
     payload = {
@@ -463,10 +415,7 @@ def get_status_wallet():
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/status/wallet", headers=headers)
-    with open(output_dir+'wallet_status.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def get_api_key_list():
     payload = {
@@ -479,19 +428,13 @@ def get_api_key_list():
     headers = {"Authorization": authorize_token}
 
     res = requests.get(server_url + "/v1/api_keys", headers=headers)
-    with open(output_dir+'api_key_list.json', 'w') as f:
-        json.dump(res.json(), f,indent=4)
-
-    print(res.json())
+    return res
 
 def get_market_info():
     url = server_url + "/v1/market/all"
     querystring = {"isDetails":"false"}
     response = requests.request("GET", url, params=querystring)
-    with open(output_dir+'market_info.json', 'w') as f:
-        json.dump(response.json(), f,indent=4)
-
-    print(response.text)
+    return response
 
 def get_candle_info(market_unit,time_unit):
     querystring={"market":[],"count":[]}
@@ -500,39 +443,32 @@ def get_candle_info(market_unit,time_unit):
     url = server_url + "/v1/candles/" + time_unit
 
     response = requests.request("GET", url, params=querystring)
+    return response
+"""
     time_unit_str = time_unit.replace('/','_')
     file_name = output_dir+'candle_info('+ time_unit_str+ ').json'
     with open(file_name, 'w') as f:
         json.dump(response.json(), f,indent=4)
 
     print(response.text)
+"""
 
 def get_trade_info_tick(market_unit):
     url =  server_url +"/v1/trades/ticks"
     querystring = {"market":"KRW-BTC","count":"1"}
     response = requests.request("GET", url, params=querystring)
-    with open(output_dir+'trade_info_tick.json', 'w') as f:
-        json.dump(response.json(), f,indent=4)
-
-    print(response.text)
+    return response
 
 def get_market_info_ticker(markets):
     url = server_url + "/v1/ticker"
     querystring={"markets":[]}
     querystring["markets"]=markets
     response = requests.request("GET", url,params=querystring)
-    with open(output_dir+'market_info_ticker.json', 'w') as f:
-        json.dump(response.json(), f,indent=4)
-
-    # print(response.json())
-    return response.json()
+    return response
 
 def get_orderbook(markets):
     url = server_url + "/v1/orderbook"
     querystring={"markets":[]}
     querystring["markets"]=markets
     response = requests.request("GET", url,params=querystring)
-    with open(output_dir+'orderbook.json', 'w') as f:
-        json.dump(response.json(), f,indent=4)
-
-    print(response.text)
+    return response
