@@ -29,6 +29,7 @@ def get_my_account_info():    #계정정보를 불러 오는 것.
 
     return res
 
+
 def get_order_chance(list_market):
      #딕셔너리, 자료를 찾기위해서, 단어에 대한 세부적 사항이 나온다. list_market['market']
     query = list_market
@@ -49,7 +50,7 @@ def get_order_chance(list_market):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/orders/chance", params=query, headers=headers)
+    res = requests.get(server_url + "/v1/orders/chance", params=query, headers=headers).json()
 
     return res
 
@@ -72,7 +73,7 @@ def get_ordered_info(id):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/order", params=query, headers=headers)
+    res = requests.get(server_url + "/v1/order", params=query, headers=headers).json()
     return res
 
 #this must be improved
@@ -103,7 +104,7 @@ def get_order_list(ids):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/orders", params=query, headers=headers)
+    res = requests.get(server_url + "/v1/orders", params=query, headers=headers).json()
     return res
 
 def cancel_order(uuids):
@@ -125,7 +126,7 @@ def cancel_order(uuids):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.delete(server_url + "/v1/order", params=query, headers=headers)
+    res = requests.delete(server_url + "/v1/order", params=query, headers=headers).json()
     return res
 
 def order_bitcoin(bitcoin):
@@ -147,7 +148,7 @@ def order_bitcoin(bitcoin):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.post(server_url + "/v1/orders", params=query, headers=headers)
+    res = requests.post(server_url + "/v1/orders", params=query, headers=headers).json()
     return res
 
 def get_info_withdraw(uid):
@@ -169,7 +170,7 @@ def get_info_withdraw(uid):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/withdraw", params=query, headers=headers)
+    res = requests.get(server_url + "/v1/withdraw", params=query, headers=headers).json()
     return res
     
 def get_info_withdraw_list(withdrawState):
@@ -201,7 +202,7 @@ def get_info_withdraw_list(withdrawState):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/withdraws", params=query, headers=headers)
+    res = requests.get(server_url + "/v1/withdraws", params=query, headers=headers).json()
     return res
 
 def get_withdraw_potential():
@@ -225,7 +226,7 @@ def get_withdraw_potential():
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/withdraw", params=query, headers=headers)
+    res = requests.get(server_url + "/v1/withdraw", params=query, headers=headers).json()
     return res
 
 def withdraw_coin(coin) :
@@ -247,7 +248,7 @@ def withdraw_coin(coin) :
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.post(server_url + "/v1/withdraws/coin", params=query, headers=headers)
+    res = requests.post(server_url + "/v1/withdraws/coin", params=query, headers=headers).json()
     return res
 
 def withdraw_krw(krw):
@@ -269,7 +270,7 @@ def withdraw_krw(krw):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.post(server_url + "/v1/withdraws/krw", params=query, headers=headers)
+    res = requests.post(server_url + "/v1/withdraws/krw", params=query, headers=headers).json()
     return res
 
 def get_deposit_list(unit):
@@ -300,7 +301,7 @@ def get_deposit_list(unit):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/deposits", params=query, headers=headers)
+    res = requests.get(server_url + "/v1/deposits", params=query, headers=headers).json()
     return res
 
 def get_deposit_info(uid):
@@ -322,7 +323,7 @@ def get_deposit_info(uid):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/deposit", params=query, headers=headers)
+    res = requests.get(server_url + "/v1/deposit", params=query, headers=headers).json()
     return res
 
 def generate_coin_address(coin_unit):
@@ -344,7 +345,7 @@ def generate_coin_address(coin_unit):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.post(server_url + "/v1/deposits/generate_coin_address", params=query, headers=headers)
+    res = requests.post(server_url + "/v1/deposits/generate_coin_address", params=query, headers=headers).json()
     return res
 
 def get_coin_address_list():
@@ -357,7 +358,7 @@ def get_coin_address_list():
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/deposits/coin_addresses", headers=headers)
+    res = requests.get(server_url + "/v1/deposits/coin_addresses", headers=headers).json()
     return res
 
 def get_coin_address(coin):
@@ -379,7 +380,7 @@ def get_coin_address(coin):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/deposits/coin_address", params=query, headers=headers)
+    res = requests.get(server_url + "/v1/deposits/coin_address", params=query, headers=headers).json()
     return res
 
 def deposit_krw(krw_amount):
@@ -401,7 +402,7 @@ def deposit_krw(krw_amount):
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.post(server_url + "/v1/deposits/krw", params=query, headers=headers)
+    res = requests.post(server_url + "/v1/deposits/krw", params=query, headers=headers).json()
     return res
 
 def get_status_wallet():
@@ -414,7 +415,7 @@ def get_status_wallet():
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/status/wallet", headers=headers)
+    res = requests.get(server_url + "/v1/status/wallet", headers=headers).json()
     return res
 
 def get_api_key_list():
@@ -427,13 +428,13 @@ def get_api_key_list():
     authorize_token = 'Bearer {}'.format(jwt_token)
     headers = {"Authorization": authorize_token}
 
-    res = requests.get(server_url + "/v1/api_keys", headers=headers)
+    res = requests.get(server_url + "/v1/api_keys", headers=headers).json()
     return res
 
 def get_market_info():
     url = server_url + "/v1/market/all"
     querystring = {"isDetails":"false"}
-    response = requests.request("GET", url, params=querystring)
+    response = requests.request("GET", url, params=querystring).json()
     return response
 
 def get_candle_info(market_unit,time_unit):
@@ -442,7 +443,7 @@ def get_candle_info(market_unit,time_unit):
     querystring["count"] = "1"
     url = server_url + "/v1/candles/" + time_unit
 
-    response = requests.request("GET", url, params=querystring)
+    response = requests.request("GET", url, params=querystring).json()
     return response
 """
     time_unit_str = time_unit.replace('/','_')
@@ -456,19 +457,19 @@ def get_candle_info(market_unit,time_unit):
 def get_trade_info_tick(market_unit):
     url =  server_url +"/v1/trades/ticks"
     querystring = {"market":"KRW-BTC","count":"1"}
-    response = requests.request("GET", url, params=querystring)
+    response = requests.request("GET", url, params=querystring).json()
     return response
 
 def get_market_info_ticker(markets):
     url = server_url + "/v1/ticker"
     querystring={"markets":[]}
     querystring["markets"]=markets
-    response = requests.request("GET", url,params=querystring)
+    response = requests.request("GET", url,params=querystring).json()
     return response
 
 def get_orderbook(markets):
     url = server_url + "/v1/orderbook"
     querystring={"markets":[]}
     querystring["markets"]=markets
-    response = requests.request("GET", url,params=querystring)
+    response = requests.request("GET", url,params=querystring).json()
     return response
